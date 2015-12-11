@@ -12,7 +12,7 @@ class TechRolesController < ApplicationController
 
 
   def index
-    @techRoles=TechRole.where(validity: 'true').all.order('LOWER(name)')
+    @techRoles=TechRole.where(validity: true).all.order('LOWER(name)')
   end
 
   def edit

@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @projects = Project.where(:validity=> 'true').all.order('LOWER(name)')
+    @projects = Project.where(:validity=> true).all.order('LOWER(name)')
 
     respond_to do |f|
       f.json { render json: name_and_path(@projects)}
@@ -52,7 +52,7 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @technologies = Technology.where(validity: 'true').order('LOWER(name)')
+    @technologies = Technology.where(validity: true).order('LOWER(name)')
   end
 
   def create

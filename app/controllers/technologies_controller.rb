@@ -10,7 +10,7 @@ class TechnologiesController < ApplicationController
   end
 
   def index
-    @technologies = Technology.where(validity: 'true').all.order('LOWER(name)')
+    @technologies = Technology.where(validity: true).all.order('LOWER(name)')
   end
 
   def edit

@@ -1,11 +1,5 @@
 source 'https://rubygems.org'
 
-#HEROKU
-group :production do
-  gem 'rails_12factor' #necesario para Heroku
-end
-ruby "2.2.2" #especifica la versión de ruby a usar en Heroku.
-
 # Gema para la autenticación con google
 gem "omniauth-google-oauth2", "~> 0.2.1"
 gem 'capybara'
@@ -21,7 +15,11 @@ gem 'rails', '4.2.1'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 # Use postgresql as the database for Active Record
-gem 'pg'
+#gem 'pg'
+
+gem 'mysql2', '~> 0.3.13'
+gem 'therubyracer'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Compass

@@ -66,7 +66,7 @@ class PeopleController < ApplicationController
       @cats = Category.all.order('LOWER(name)').collect {|t| [t.name, t.id, 'isfeedback' => t.is_feedback]}
 
       @authors = Person.all.where('id NOT in (?)', @identifier).collect {|t| [t.name, t.id]}
-      @tags = Tag.where(validity: 'true').order('LOWER(name)')
+      @tags = Tag.where(validity: true).order('LOWER(name)')
 
       #rol tecnico
       @trole = ''
@@ -79,8 +79,8 @@ class PeopleController < ApplicationController
       #@proysin = @person.projects.where('Projects.end_date IS NULL OR Projects.end_date >= CURRENT_DATE')
       #@proysend = @person.projects.where("Projects.end_date < CURRENT_DATE").length
 
-      @proysin = @person.projects.where('Projects.status <> ?', Project.statuses[:finished]).order('LOWER(name)')
-      @proysend = @person.projects.where('Projects.status = ?', Project.statuses[:finished]).length
+      @proysin = @person.projects.where('projects.status <> ?', Project.statuses[:finished]).order('LOWER(name)')
+      @proysend = @person.projects.where('projects.status = ?', Project.statuses[:finished]).length
 
       @image_id = @person.image_id
 
@@ -185,8 +185,8 @@ class PeopleController < ApplicationController
 
   def new
     @person = Person.new
-    @roles=TechRole.where(validity: 'true').order('LOWER(name)')
-    @skills= Skill.where(validity: 'true').order('LOWER(name)')
+    @roles=TechRole.where(validity: true).order('LOWER(name)')
+    @skills= Skill.where(validity: true).order('LOWER(name)')
   end
 
   def create
@@ -204,7 +204,7 @@ class PeopleController < ApplicationController
       redirect_to '/people'
     else
       flash.alert = "'#{person_params[:name]}' " + t('messages.create.error')
-      @roles=TechRole.where(validity: 'true').order('LOWER(name)')
+      @roles=TechRole.where(validity: true).order('LOWER(name)')
       render :action =>'new'
     end
   end
@@ -233,8 +233,8 @@ class PeopleController < ApplicationController
       flash.alert= t('not_authorized')
       redirect_to people_path
     end
-    @skills=Skill.where(validity: 'true').order('LOWER(name)')
-    @roles=TechRole.where(validity: 'true').order('LOWER(name)')
+    @skills=Skill.where(validity: true).order('LOWER(name)')
+    @roles=TechRole.where(validity: true).order('LOWER(name)')
   end
 
   def update
